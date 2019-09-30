@@ -31,6 +31,7 @@ $onlyMembersCanView = get_post_meta(get_the_ID(), 'onlyMembersCanView', true)===
         $_na_msg = str_replace('{{page_url}}', urlencode(home_url(add_query_arg(array(),$wp->request))),$_na_msg);
         echo empty($_na_msg) ? '本页面仅对登录用户开放':do_shortcode($_na_msg);
     }else{
+		echo $_SERVER["SERVER_ADDR"];
     	echo $_SERVER["REMOTE_ADDR"];
 	    the_content();?>
     <?php }
