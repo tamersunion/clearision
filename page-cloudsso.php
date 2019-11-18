@@ -4,6 +4,7 @@
         if(current_user_can( 'edit_posts' )){
             $current_user = wp_get_current_user();
             $user = $current_user->user_login;
+            date_default_timezone_set('PRC');
             $login_token = base64_encode($user).'|'.md5($user.get_option('clrs_kod_tonken').date('YmdH'));
             $url = 'https://cloud.tamersunion.net/?user/loginSubmit&login_token='.urlencode($login_token);
             header('location: '.$url);
