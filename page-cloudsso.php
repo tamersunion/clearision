@@ -8,7 +8,9 @@
             $login_token = base64_encode($user).'|'.md5($user.get_option('clrs_kod_tonken'));
             $url = 'https://cloud.tamersunion.net/?user/loginSubmit&login_token='.urlencode($login_token);
             header('location: '.$url);
+            echo '<script>window.location.href="'.$url.'";<script>';
         }else{
             header('location: '.esc_url(home_url()).'/wp-login.php?redirect_to=cloudsso');
+            echo '<script>window.location.href="'.esc_url(home_url()).'/wp-login.php?redirect_to=cloudsso";<script>';
         }
 	?>
