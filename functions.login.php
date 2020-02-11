@@ -146,7 +146,7 @@ function clrs_user_login_message($user_login)
     $current_user = get_user_by( 'login', $user_login );
     //获取当前登录信息
     $login_date = date('Y-m-d H:i:s');
-    $login_ip = $_SERVER['REMOTE_ADDR'];
+    $login_ip = clrs_get_real_client_ip();
     $login_addr = clrs_ip_location($login_ip);
     $login_ua = $_SERVER['HTTP_USER_AGENT'];
     $login_device = clrs_ua_device_parser($login_ua);
@@ -185,6 +185,20 @@ function clrs_user_login_message($user_login)
     update_user_meta($current_user->ID, 'login_message', $login_message_arr);
 }
 add_action('wp_login','clrs_user_login_message');
+
+/**
+ * 获取用户真实IP
+ */
+function clrs_get_real_client_ip() {
+    if(!empty($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+        $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
+    } else if(!empty($_SERVER["REMOTE_ADDR"])) {
+        $ip = $_SERVER["REMOTE_ADDR"];
+    } else {
+        $ip = 'N/A';
+    }
+    return $ip;
+}
 
 /**
  * 输出屏蔽处理后的ip地址
