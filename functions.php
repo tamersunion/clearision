@@ -997,6 +997,7 @@ add_action( 'wp_enqueue_scripts', 'remove_block_library_css', 100 );
 add_filter('xmlrpc_enabled', '__return_false');
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
+
 /**
  * 禁用srcset
  */
@@ -1005,6 +1006,11 @@ function clrs_disable_srcset( $sources ) {
 	return false;
 }
 add_filter( 'wp_calculate_image_srcset', 'clrs_disable_srcset' );
+
+/**
+ * 禁止WordPress缩略图
+ */
+add_filter( 'add_image_size', create_function( '', 'return 1;' ) );
 
 /**
  * 移除顶部工具栏
