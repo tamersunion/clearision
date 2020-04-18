@@ -125,3 +125,29 @@ add_filter( 'comment_form_default_fields', function( $fields ) {
 	$fields['cookies'] = '<input style="display: none;" id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" checked="true" value="yes"/>';
 	return $fields;
 } );
+
+
+/**
+ * 游客评论人机验证
+ */
+function clrs_protection_pre($commentdata){
+    $sum = $_POST['sum'];
+    switch($sum){
+        case $_POST['num1'] + $_POST['num2']:
+            break;
+        case null:
+            echo "<script>alert('人机验证失败，请输入正确的计算结果。')</script>";
+            echo "<script>window.history.go(-1)</script>";
+            exit;
+            break;
+        default:
+            echo "<script>alert('人机验证失败，请输入正确的计算结果。')</script>";
+            echo "<script>window.history.go(-1)</script>";
+            exit;
+    }
+    return $commentdata;
+}
+
+if($comment_data['comment_type']=='') {
+    add_filter('preprocess_comment','clrs_protection_pre');
+}

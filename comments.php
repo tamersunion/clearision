@@ -56,19 +56,23 @@ if($onlyMembersCanComment && !is_user_logged_in()) return;
   //'comment_notes_before' => '',
   //'comment_notes_after' => '',
   'submit_field'         => '<div class="row"><div class="col-12">%1$s %2$s</div></div>',
+  $num1 = rand(0,9),
+  $num2 = rand(0,9),
   'fields' => apply_filters( 'comment_form_default_fields', array(
 
     'author' =>
-      '<div class="col-12 col-sm-6"><input style="width: 100%;" placeholder="'.__('昵称','clrs').'" id="author" name="author" type="text" required="required" value="' . esc_attr( $commenter['comment_author'] ) .
+      '<div class="col-12 col-sm-4"><input style="width: 100%;" placeholder="'.__('昵称','clrs').'" id="author" name="author" type="text" required="required" value="' . esc_attr( $commenter['comment_author'] ) .
       '" /></div>',
 
     'email' =>
-      '<div class="col-12 col-sm-6" ><input style="width: 100%;" placeholder="'.__('邮箱','clrs').'" id="email" name="email" type="email" required="required" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+      '<div class="col-12 col-sm-4" ><input style="width: 100%;" placeholder="'.__('邮箱','clrs').'" id="email" name="email" type="email" required="required" value="' . esc_attr(  $commenter['comment_author_email'] ) .
       '" /></div>',
 
     'url' =>
-      '<div class="col-12 col-sm-6"><input placeholder="'.__('站点','clrs').'" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
-      '" /></div>'
+      '<div class="col-12 col-sm-4"><input placeholder="'.__('站点','clrs').'" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
+      '" /></div>',
+    'captcha' =>
+        '<div class="col-12 col-sm-4"><input type="hidden" name="num1" value="'.$num1.'" /><input type="hidden" name="num2" value="'.$num2.'" /><input type="text" name="sum" style="width: 100%; margin-right: 10px; margin-bottom: 15px;" required="required" placeholder="请计算：'.$num1.' + '.$num2.' = ?" id="sum" /></div>',
     )
   ),
 );
