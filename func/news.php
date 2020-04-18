@@ -82,7 +82,7 @@ class clrs_news{
         static $cssImported = false;
         if(!$cssImported){
             $cssImported = true;
-            $content = '<style>'.file_get_contents((get_template_directory().'/functions.news.css')).'</style>';
+            $content = '<style>'.file_get_contents(get_template_directory().'/assets/css/news.css').'</style>';
             $content = preg_replace('/(\n\ +)|(\n)/', '',$content);
             return $content;
         }
