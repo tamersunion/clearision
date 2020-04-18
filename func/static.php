@@ -13,12 +13,14 @@ if (!is_admin()) {
         }
     );
 
+    $static_source = "https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js";
+
     //bootstrap-grid
     add_action('wp_enqueue_scripts', function () {
         $btgirdVerDefault = '4.3.1';
         $btgirdVer = get_option('clrs_thrdptComs_btgird_ver', $btgirdVerDefault);
         $btgirdVer = empty($btgirdVer) ? $btgirdVerDefault : $btgirdVer;
-        wp_enqueue_style('clearision-bootstrap', 'https://st-aliyun-4.hanada.info/twitter-bootstrap/' . $btgirdVer . '/css/bootstrap-grid.min.css');
+        wp_enqueue_style('clearision-bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@' . $btgirdVer . '/dist/css/bootstrap-grid.min.css');
     });
     
     //jQuery
@@ -29,7 +31,7 @@ if (!is_admin()) {
                 $jqVer = '3.4.1';
             }
             wp_deregister_script('jquery');
-            wp_register_script('jquery', 'https://st-aliyun-4.hanada.info/jquery/' . $jqVer . '/jquery.min.js', [], $jqVer);
+            wp_register_script('jquery', 'https://cdn.jsdelivr.net/npm/jquery@' . $jqVer . '/dist/jquery.min.js', [], $jqVer);
             wp_enqueue_script('jquery');
         }, 99);
     }
@@ -42,7 +44,7 @@ if (!is_admin()) {
             if (empty($faVer)) {
                 $faVer = '4.7.0';
             }
-            wp_enqueue_style('clearision-font-awesome', 'https://st-aliyun-4.hanada.info/font-awesome/' . $faVer . '/css/font-awesome.min.css', [], $faVer);
+            wp_enqueue_style('clearision-font-awesome', 'https://cdn.jsdelivr.net/npm/font-awesome@' . $faVer . '/css/font-awesome.min.css', [], $faVer);
             if (is_array($wp_styles->registered)) {
                 foreach ($wp_styles->registered as $script => $details) {
                     $src = isset($details->src) ? $details->src : false;
