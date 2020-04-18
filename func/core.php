@@ -12,10 +12,6 @@ if( (isset($_SERVER['HTTP_REFERER']) &&
 }
 */
 
-if (is_admin()) {
-    // 加载后台设置页面
-    include('dashboard.php');
-}
 
 /**
  * 判断字符串是否以某个子字符串开头

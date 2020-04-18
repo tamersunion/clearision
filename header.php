@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 <head><?php define('is_frontEnd', true) ?>
 <meta charset="<?php bloginfo('charset'); ?>" />
 <title><?php wp_title('-', true, 'right'); ?></title>

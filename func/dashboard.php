@@ -559,12 +559,6 @@ function clrs_opt_advanced()
         </tr>
         <tr>
             <td>
-                <h3>KodExplorer Tonken</h3>
-            </td>
-            <td><input type="text" style="width: 100%" name="clrs_kod_tonken" id="clrs_avatar_domain" placeholder="" value="<?php echo get_option('clrs_kod_tonken'); ?>" /></td>
-        </tr>
-        <tr>
-            <td>
                 <h3>自定义样式</h3>
             </td>
             <td><textarea name="clrs_style" rows="10" cols="60" placeholder="输入 CSS 代码，以便更新时不会被覆盖" style="font-size: 14px; font-family: Consolas, monospace, sans-serif, sans"><?php echo get_option('clrs_style'); ?></textarea></td>

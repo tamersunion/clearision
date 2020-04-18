@@ -6,6 +6,14 @@
 include get_template_directory().'/func/core.php';
 
 /**
+ * 后台设置页面
+ */
+
+if (is_admin()) {
+    include get_template_directory().'/func/dashboard.php';
+}
+
+/**
  * 用户与权限控制模块
  */
 include get_template_directory().'/func/user.php';
