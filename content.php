@@ -38,10 +38,10 @@ if($onlyMembersCanView && !is_user_logged_in()){
 }else{
     if (get_post_format() == 'quote') {
         echo '<a href="'; the_permalink(); echo '">';
-        the_content('');
+        the_content();
         echo '</a>';
     }else{
-        the_content('');
+        the_content();
     }
 }
 ?>

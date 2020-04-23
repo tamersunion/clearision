@@ -630,7 +630,7 @@ input:focus,input:hover,textarea:focus,textarea:hover {
 	display:none
 }
 .more-link {
-	display:inline-block;
+	display:none;
 	padding:0 5px;
 	height:22px;
 	border:0;
@@ -1616,6 +1616,15 @@ img.emoji {
 #comment_form > .container-fluid > .row > div {
 	padding-left:5px;
 	padding-right:5px
+}
+#comment_form #sum::-webkit-input-placeholder {
+  color: #efefef;
+}
+#comment_form #sum:-moz-placeholder {
+  color: #efefef;
+}
+#comment_form #sum:-ms-input-placeholder {
+  color: #efefef;
 }
 .alignleft {
 	display:inline;
