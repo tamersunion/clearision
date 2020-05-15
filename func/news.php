@@ -121,7 +121,7 @@ class clrs_news{
             (empty($time) ? '' : '<td class="nl_time">'.$time.'</td>') .
         '</tr>' .
         '<tr class="newsletters_body">' .
-        '    <td /><td class="nl_body"' . (empty($time) ? '' : 'colspan="2"') . '><div>'.$body.'</div></td>' .
+        '    <td /><td class="nl_body"' . (empty($time) ? '' : 'colspan="2"') . '><div>'.do_shortcode($body).'</div></td>' .
         '</tr>' .
         "</table>" . PHP_EOL;
     }
