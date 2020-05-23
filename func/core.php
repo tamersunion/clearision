@@ -474,9 +474,8 @@ add_filter(
 /**
  * 允许上传指定格式的文件
  */
-function clrs_allow_upload_mimes( $mimes ){
-    return array(
-      'json' => 'application/json',
-    );
+function clrs_allow_upload_mimes( $mimes = array() ){
+    $mimes['json'] = "application/json";
+    return $mimes;
   }
   add_filter( 'upload_mimes', 'clrs_allow_upload_mimes' );
