@@ -14,7 +14,7 @@ $author_comment_count = $wpdb->get_var('SELECT COUNT(1) FROM ' . $wpdb->comments
 <div class="content">
 	<hgroup class="post_header" style="text-align: center;">
 	    <img style="width: 6em!important; height: 6em!important;max-width: 100%!important; max-height: unset;border-radius: 10px;" src="<?php echo get_avatar_data($curauth)['url']; ?>"><br />
-		<h2 class="post_title"><?php echo $curauth->display_name; ?></h2>
+		<h2 class="post_title author_name"><?php echo $curauth->display_name; ?></h2>
 		<?php if($curauth->job){ ?><p><?php echo $curauth->job; ?></p><?php } ?>
         <?php if($curauth->description){ ?><p><?php echo $curauth->description; ?></p><?php } ?>
 		<div style="margin: 10px 0;" class="counts">文章<span style="margin-left: 8px;padding-right: 20px;margin-right: 20px;border-right: 1px solid #eee;"><?php the_author_posts(); ?></span>评论<span style="margin-left: 8px;    border-right: none;margin-right: 0;padding-right: 0;"><?php echo $author_comment_count ?></span></div>
