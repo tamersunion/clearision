@@ -39,9 +39,9 @@ $onlyMembersCanView = get_post_meta(get_the_ID(), 'onlyMembersCanView', true)===
     	echo "<br>";
     	echo "X-Forwarded-For：".$_SERVER["HTTP_X_FORWARDED_FOR"];
     	echo "<br>";
-    	echo "HTTP_CLIENT_IP：".$_SERVER["HTTP_CLIENT_IP"];
+    	echo "CLIENT-IP：".$_SERVER["HTTP_CLIENT_IP"];
     	echo "<br>";
-    	echo "HTTP_X_REAL_IP：".$_SERVER["HTTP_X_REAL_IP"];
+    	echo "X-REAL-IP：".$_SERVER["HTTP_X_REAL_IP"];
 	    the_content();?>
     <?php }
 	?></div>
