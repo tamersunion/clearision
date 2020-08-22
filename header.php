@@ -37,7 +37,12 @@ if (!empty($clrs_opbg_mobi)) echo "body { background-image: url('" . $clrs_opbg_
 if (!empty($clrs_opcl_mobi)) echo "body { background-color: " . $clrs_opcl_mobi . "; }";
 echo '}';
 if (!empty($clrs_style)) echo $clrs_style;
-echo "</style>";?>
+echo "</style>";
+$clrs_tjt = get_option('clrs_tongji');
+if (!empty($clrs_tjt)) {
+  echo $clrs_tjt;
+};
+?>
 </head>
 
 <body <?php body_class(); ?>>
