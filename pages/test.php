@@ -31,17 +31,10 @@ $onlyMembersCanView = get_post_meta(get_the_ID(), 'onlyMembersCanView', true)===
         $_na_msg = str_replace('{{page_url}}', urlencode(home_url(add_query_arg(array(),$wp->request))),$_na_msg);
         echo empty($_na_msg) ? '本页面仅对登录用户开放':do_shortcode($_na_msg);
     }else{
-		echo "SERVER_ADDR: ".$_SERVER["SERVER_ADDR"];
-		echo "<br>";
-    	echo "REMOTE_ADDR：".$_SERVER["REMOTE_ADDR"];
-    	echo "<br>";
-    	echo "CF-Connecting-IP：".$_SERVER["HTTP_CF_CONNECTING_IP"];
-    	echo "<br>";
-    	echo "X-Forwarded-For：".$_SERVER["HTTP_X_FORWARDED_FOR"];
-    	echo "<br>";
-    	echo "CLIENT-IP：".$_SERVER["HTTP_CLIENT_IP"];
-    	echo "<br>";
-    	echo "X-REAL-IP：".$_SERVER["HTTP_X_REAL_IP"];
+		echo "<p>SERVER_ADDR: ".$_SERVER["SERVER_ADDR"]."</p>";
+    	echo "<p>REMOTE_ADDR：".$_SERVER["REMOTE_ADDR"]."</p>";
+    	echo "<p>CF-Connecting-IP：".$_SERVER["HTTP_CF_CONNECTING_IP"]."</p>";
+    	echo "<p>X-Forwarded-For：".$_SERVER["HTTP_X_FORWARDED_FOR"]."</p>";
 	    the_content();?>
     <?php }
 	?></div>
