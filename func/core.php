@@ -97,6 +97,7 @@ add_action('wp_before_admin_bar_render', 'clrs_admin_bar');*/
 /**
  * 本地化emoji
  */
+/*
 add_filter('emoji_svg_url', function ($url) use ($clrs_siteURL, $clrs_resURL) {
     return str_replace($clrs_siteURL, $clrs_resURL, get_template_directory_uri() . '/assets/common/emoji/svg/');
 });
@@ -109,7 +110,7 @@ add_filter('script_loader_src', function ($url) use ($clrs_siteURL, $clrs_resURL
     }
     return $url;
 });
-
+*/
 /**
  * 获取博客标题
  *
