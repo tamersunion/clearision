@@ -410,6 +410,12 @@ remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
 
 /**
+ * 禁用Link响应头
+ */
+remove_action('template_redirect', 'wp_shortlink_header', 11, 0);
+remove_action('template_redirect', 'rest_output_link_header', 11, 0);
+
+/**
  * 禁用srcset
  */
 
