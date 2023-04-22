@@ -10,7 +10,6 @@
 <meta name="application-name" content="<?php bloginfo('name'); ?>"/>
 <meta name="keywords" content="<?php echo get_option('clrs_keywd'); ?>" />
 <meta name="description" content="<?php echo get_option('clrs_desc'); ?>" />
-<link rel="dns-prefetch" href="//static.tamersunion.net">
 <link rel="home" href="<?php echo esc_url(home_url('/')); ?>" />
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url') ?>" />
 <link rel="alternate" type="application/rdf+xml" title="RSS 1.0" href="<?php bloginfo('rss_url') ?>" />

@@ -12,7 +12,7 @@ class clrs_avatar
         add_filter('pre_get_avatar_data', array($this, 'avatar_default_url'), 1, 2);
         
         if (!empty(get_option('clrs_default_avatar'))) {
-            add_filter('avatar_defaults', array($this, 'replacer_default_avata'));
+            add_filter('avatar_defaults', array($this, 'replacer_default_avatar'));
         }
         
         
@@ -125,7 +125,7 @@ class clrs_avatar
         return $args;
     }
     
-    public function replacer_default_avata($avatar_defaults)
+    public function replacer_default_avatar($avatar_defaults)
     {
         $avatar = get_option('clrs_default_avatar');
         $avatar_defaults[$avatar] = "主题默认头像";

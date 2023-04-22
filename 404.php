@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php 
+header_remove("Pragma");
+header_remove("Set-Cookie");
+header_remove("Expires");
+header_remove("Cache-Control");
+get_header();
+?>
 <style>
     nav.post_nav_bds{
         padding-bottom: 0 !important;

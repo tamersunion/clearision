@@ -76,7 +76,7 @@ function clrs_comment($comment, $args, $depth)
 	            </section>
 	        </article>
 	    <?php
-    echo '</li>';
+    //echo '</li>';
     }
 }
 

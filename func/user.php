@@ -185,7 +185,10 @@ function edit_user_profile($user){
         jQuery(document).ready(function($) {
                 $('#first_name').parent().parent().hide();
                 $('#last_name').parent().parent().hide();
-                $('#display_name').parent().parent().hide();
+                $('#display_name').parent().parent().hide;
+                $('#url').parent().parent().hide;
+                $('#password').hide();
+                $('#application-passwords-section').hide();
                 $('.show-admin-bar').hide();
         });
     </script>
@@ -196,12 +199,12 @@ function edit_user_profile($user){
 add_action('personal_options_update','edit_user_profile_update');
 add_action('edit_user_profile_update','edit_user_profile_update');
 function edit_user_profile_update($user_id){ 
-        if (!current_user_can('edit_user', $user_id)) return false;
-        $user = get_userdata($user_id); 
-        $_POST['nickname'] = ($_POST['nickname'])?:$user->user_login;
-	    $_POST['display_name']	= $_POST['nickname'];
-	    $_POST['first_name']	= '';
-	    $_POST['last_name']		= '';
+    if (!current_user_can('edit_user', $user_id)) return false;
+    $user = get_userdata($user_id); 
+    $_POST['nickname'] = ($_POST['nickname'])?:$user->user_login;
+    $_POST['display_name']	= $_POST['nickname'];
+    $_POST['first_name']	= '';
+    $_POST['last_name']		= '';
 }
 
 /**
@@ -209,6 +212,14 @@ function edit_user_profile_update($user_id){
  */
 add_filter('manage_users_columns', 'remove_name_column');
 function remove_name_column($columns) {
-	unset($columns['name']);
-	return $columns;
+    unset($columns['name']);
+    return $columns;
+}
+
+/**
+ * 禁止用户修改密码 
+ */
+add_filter('allow_password_reset', 'disable_password_reset');
+function disable_password_reset() {
+    return false;
 }

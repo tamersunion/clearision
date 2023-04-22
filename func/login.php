@@ -138,7 +138,7 @@ function clrs_ip_location($ip){
 /**
  * 记录登录时间、IP地址、地理位置、登录方式
  */
-function clrs_user_login_message($user_login)
+/*function clrs_user_login_message($user_login)
 {
     global $user_ID;
     // 纠正8小时时差
@@ -184,13 +184,16 @@ function clrs_user_login_message($user_login)
     $login_message_arr['login_num_'.$login_num]['type'] = $login_type;
     update_user_meta($current_user->ID, 'login_message', $login_message_arr);
 }
-add_action('wp_login','clrs_user_login_message');
+add_action('wp_login','clrs_user_login_message');*/
+
 
 /**
  * 获取用户真实IP
  */
 function clrs_get_real_client_ip() {
-    if(!empty($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+    if(!empty($_SERVER["HTTP_X_CILENT_IP"])) {
+        $ip = $_SERVER["HTTP_X_CILENT_IP"];
+    } else if(!empty($_SERVER["HTTP_CF_CONNECTING_IP"])) {
         $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
     } else if(!empty($_SERVER["REMOTE_ADDR"])) {
         $ip = $_SERVER["REMOTE_ADDR"];
@@ -321,6 +324,16 @@ function clrs_shotcode_login_message()
     return $login_message_table;
 }
 add_shortcode('login_message', 'clrs_shotcode_login_message');
+
+
+/**
+ * 注销重定向
+ */
+function auto_redirect_external_after_logout(){
+  wp_redirect( 'https://cas.tamersunion.org/logout?redirect=https%3A%2F%2Fwww.tamersunion.org' );
+  exit();
+}
+add_action('wp_logout','auto_redirect_external_after_logout');
 
 /**
  * curl get获取接口返回
