@@ -3,7 +3,7 @@
 /*
 Theme Name: Clearision
 Theme URI: http://blog.dimpurr.com/Clearison
-Version: 2.7.1
+Version: 2.7.2
 Author: Dimpurr
 Author URI: http://dimpurr.com
 Description: A HTML5 grey and one column WordPress theme.
@@ -873,22 +873,95 @@ input:focus,input:hover,textarea:focus,textarea:hover {
 #respond input[type=submit],#respond input[type=button] {
 	min-width:75pt
 }
-#respond .avatar-44 {
-	max-width:44px!important
+/* Keep each field self-contained: WordPress skips guest fields after login. */
+#comment_form.clrs-comment-form {
+	display:grid;
+	grid-template-columns:repeat(3,minmax(0,1fr));
+	gap:15px 10px;
+	margin:0
 }
-#author,#email {
-	margin-right:10px;
-	margin-bottom:15px
+#comment_form > * {
+	grid-column:1 / -1;
+	min-width:0
 }
-#url {
-	margin-right:0;
-	margin-bottom:15px
+#comment_form > .clrs-comment-field {
+	grid-column:span 1;
+	align-self:center
 }
-#respond textarea {
-	margin-top:-10px;
-	padding:15px;
-	width:91.7%;
-	max-width:666px
+#comment_form .comment-form-comment {
+	margin:0
+}
+#comment_form textarea,
+#comment_form .clrs-comment-field input:not([type=hidden]) {
+	box-sizing:border-box;
+	display:block;
+	width:100%;
+	max-width:none;
+	margin:0
+}
+#comment_form textarea {
+	padding:15px
+}
+#comment_form .clrs-comment-account,
+#comment_form .clrs-comment-profile {
+	display:flex;
+	align-items:center;
+	gap:12px;
+	min-width:0
+}
+#comment_form .clrs-comment-account {
+	justify-content:space-between
+}
+#comment_form .clrs-comment-profile {
+	font-weight:600;
+	overflow-wrap:anywhere
+}
+#comment_form .clrs-comment-profile .avatar {
+	flex-shrink:0;
+	float:none;
+	width:44px;
+	height:44px;
+	margin:0;
+	transform:none
+}
+#comment_form .clrs-comment-logout {
+	flex-shrink:0
+}
+#comment_form .clrs-comment-actions {
+	display:flex;
+	flex-wrap:wrap;
+	align-items:center;
+	gap:8px
+}
+#comment_form .clrs-comment-actions input {
+	margin:0
+}
+.logged-in #comment_form.clrs-comment-form {
+	grid-template-columns:minmax(0,1fr) auto
+}
+.logged-in #comment_form .clrs-comment-captcha {
+	max-width:22em
+}
+.logged-in #comment_form .clrs-comment-actions {
+	grid-column:2 / -1;
+	justify-content:flex-end
+}
+@media screen and (max-width:960px) {
+	.logged-in #comment_form.clrs-comment-form {
+		grid-template-columns:minmax(0,1fr)
+	}
+	.logged-in #comment_form .clrs-comment-captcha {
+		max-width:none
+	}
+	.logged-in #comment_form .clrs-comment-actions {
+		grid-column:1 / -1;
+		justify-content:flex-start
+	}
+}
+@media screen and (max-width:575px) {
+	#comment_form.clrs-comment-form {
+		grid-template-columns:minmax(0,1fr)
+	}
 }
 #sidebar {
 	margin:0 5px 20px 200px;
@@ -1613,10 +1686,6 @@ img.emoji {
 .post_content p {
 	-webkit-margin-before:0
 }
-#comment_form > .container-fluid > .row > div {
-	padding-left:5px;
-	padding-right:5px
-}
 #comment_form #sum::-webkit-input-placeholder {
   color: #efefef;
 }
@@ -1760,8 +1829,6 @@ img.emoji {
 	#footer {
 	display:none
 }
-}#respond .avatar-44 {
-	max-width:44px!important
 }
 .post_content ol,.post_content ul {
 	padding-left:40px;
@@ -1844,10 +1911,6 @@ img.emoji {
 }
 .comment-notes {
 	display:none
-}
-.logged_in_as {
-	width:100%;
-	margin:0 4px
 }
 .login_message_table {
 	width:100%;

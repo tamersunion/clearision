@@ -21,8 +21,8 @@ function custom_login()
     echo "</style>";
 
     echo "<script type=\"text/javascript\">";
-    echo "	jQuery(document).ready(function() {";
-    echo "		  jQuery('input.input').attr('spellcheck', 'false');";
+    echo "	document.addEventListener('DOMContentLoaded', function() {";
+    echo "		  document.querySelectorAll('input.input').forEach(function(input) { input.spellcheck = false; });";
     echo "	});";
     echo "</script>";
 }

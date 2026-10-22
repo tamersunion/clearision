@@ -68,7 +68,7 @@ function clrs_comment($comment, $args, $depth)
 	
 	            <section class="comment-content comment">
 	                <?php comment_text(); ?>
-                    <?php if (current_user_can('edit_comment')) : ?>
+                    <?php if (current_user_can('edit_comment', get_comment_ID())) : ?>
                     <span class="edit-link"><a class="comment-edit-link" href="<?php echo get_edit_comment_link(get_comment_ID()); ?>"><?php echo __('编辑', 'clrs') ?></a></span>
                     <?php endif; ?>
 	                <?php delete_comment_link(get_comment_ID()); ?>
@@ -88,8 +88,6 @@ function clrs_comment($comment, $args, $depth)
  */
 function alter_comment_form_fields(array $fields)
 {
-    //$fields['author'] = '';
-    //$fields['email'] = '';
     $fields['url'] = '';
     return $fields;
 }
@@ -105,13 +103,13 @@ add_filter('comment_text', 'kt_make_clickable');
 /**
  * 评论添加@功能
  *
- * @param [type] $comment_text 回复框标题
- * @param string $comment 回复给的comment对象
- * @return void
+ * @param string $comment_text 评论内容
+ * @param WP_Comment|null $comment 评论对象；邮件通知等调用可能不提供
+ * @return string
  */
-function clrs_comment_add_at($comment_text, $comment = '')
+function clrs_comment_add_at($comment_text, $comment = null)
 {
-    if ($comment->comment_parent > 0) {
+    if ($comment instanceof WP_Comment && $comment->comment_parent > 0) {
         $comment_text = '回复 <a href="#comment-' . $comment->comment_parent . '" target="_self">@' . get_comment_author($comment->comment_parent) . '</a>： ' . $comment_text;
     }
     return $comment_text;

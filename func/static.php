@@ -7,9 +7,9 @@ if (!is_admin()) {
     add_action(
         'wp_enqueue_scripts',
         function () {
-            wp_enqueue_style('clearision-style', get_template_directory_uri() . '/style.css');
-            wp_register_script('clearision-init', get_template_directory_uri() . '/assets/scripts/script.js', ['jquery'], false, true);
-            wp_enqueue_script('clearision-init');
+            $theme_version = wp_get_theme(get_template())->get('Version');
+            wp_enqueue_style('clearision-style', get_template_directory_uri() . '/style.css', [], $theme_version);
+            wp_enqueue_script('clearision-init', get_template_directory_uri() . '/assets/scripts/script.js', ['jquery'], $theme_version, true);
         }
     );
 

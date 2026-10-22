@@ -22,6 +22,7 @@ include get_template_directory().'/func/user.php';
  * 评论相关模块
  */
 include get_template_directory().'/func/comments.php';
+include get_template_directory().'/func/comment-form.php';
 
 /**
  * 前端资源处理
