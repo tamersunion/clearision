@@ -261,22 +261,25 @@ function clrs_opt_common()
 /* 内容 */
 function clrs_scontent(){
     if (isset($_POST['option_save'])) {
-        
+
         $clrs_noaccess = stripslashes($_POST['clrs_noaccess']);
         update_option('clrs_noaccess', $clrs_noaccess);
-        
+
         $clrs_login_redirect = stripslashes($_POST['clrs_login_redirect']);
         update_option('clrs_login_redirect', $clrs_login_redirect);
-        
+
+        $clrs_logout_redirect = stripslashes($_POST['clrs_logout_redirect']);
+        update_option('clrs_logout_redirect', $clrs_logout_redirect);
+
         $clrs_index_header = stripslashes($_POST['clrs_index_header']);
         update_option('clrs_index_header', $clrs_index_header);
-        
+
         $clrs_index_header_title = stripslashes($_POST['clrs_index_header_title']);
         update_option('clrs_index_header_title', $clrs_index_header_title);
-        
+
         $clrs_index_header_link = stripslashes($_POST['clrs_index_header_link']);
         update_option('clrs_index_header_link', $clrs_index_header_link);
-        
+
         $clrs_cpyrt = stripslashes($_POST['clrs_cpyrt']);
         update_option('clrs_cpyrt', $clrs_cpyrt);
     } ?>
@@ -330,6 +333,12 @@ function clrs_scontent(){
                 <h3>登录后跳转</h3>
             </td>
             <td><input type="text" style="width: 100%" name="clrs_login_redirect" id="clrs_login_redirect" placeholder="<?php echo home_url(); ?>" value="<?php echo get_option('clrs_login_redirect'); ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <h3>注销后跳转</h3>
+            </td>
+            <td><input type="text" style="width: 100%" name="clrs_logout_redirect" id="clrs_logout_redirect" placeholder="<?php echo home_url(); ?>" value="<?php echo get_option('clrs_logout_redirect'); ?>" /></td>
         </tr>
         <tr>
             <td>
