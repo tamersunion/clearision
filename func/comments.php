@@ -130,24 +130,21 @@ add_filter( 'comment_form_default_fields', function( $fields ) {
 /**
  * 游客评论人机验证
  */
-function clrs_protection_pre($commentdata){
-    $sum = $_POST['sum'];
-    switch($sum){
-        case $_POST['num1'] + $_POST['num2']:
-            break;
-        case null:
-            echo "<script>alert('人机验证失败，请输入正确的计算结果。')</script>";
-            echo "<script>window.history.go(-1)</script>";
-            exit;
-            break;
-        default:
-            echo "<script>alert('人机验证失败，请输入正确的计算结果。')</script>";
-            echo "<script>window.history.go(-1)</script>";
-            exit;
+function clrs_protection_pre($commentdata)
+{
+    if (is_user_logged_in() || !in_array($commentdata['comment_type'] ?? 'comment', ['', 'comment'], true)) {
+        return $commentdata;
+    }
+
+    $sum = filter_var($_POST['sum'] ?? null, FILTER_VALIDATE_INT);
+    $num1 = filter_var($_POST['num1'] ?? null, FILTER_VALIDATE_INT);
+    $num2 = filter_var($_POST['num2'] ?? null, FILTER_VALIDATE_INT);
+    if ($sum === false || $num1 === false || $num2 === false || $sum !== $num1 + $num2) {
+        echo "<script>alert('人机验证失败，请输入正确的计算结果。')</script>";
+        echo "<script>window.history.go(-1)</script>";
+        exit;
     }
     return $commentdata;
 }
 
-if($comment_data['comment_type']=='') {
-    add_filter('preprocess_comment','clrs_protection_pre');
-}
+add_filter('preprocess_comment', 'clrs_protection_pre');
