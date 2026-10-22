@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * Keep template assets on the site's origin. The separate static mirror may
+ * contain an older theme snapshot and ignore version query parameters.
+ */
+function clrs_theme_asset_url($src, $handle)
+{
+    if (in_array($handle, ['clearision-style', 'clearision-init'], true)) {
+        return wp_make_link_relative($src);
+    }
+
+    return $src;
+}
+add_filter('style_loader_src', 'clrs_theme_asset_url', PHP_INT_MAX, 2);
+add_filter('script_loader_src', 'clrs_theme_asset_url', PHP_INT_MAX, 2);
+
+/**
  * 注册前端资源文件
  */
 if (!is_admin()) {
