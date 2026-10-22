@@ -343,7 +343,13 @@ function clrs_checkRandURI($randURI, $numberName)
         }
         $randURI = implode($randURI_rand, explode($randURI_mt[0], $randURI));
         if ($setCookie) {
-            $hookName = is_admin() ? 'admin_footer' : is_login_page() ? 'login_footer' : 'wp_footer';
+            if (is_admin()) {
+                $hookName = 'admin_footer';
+            } elseif (is_login_page()) {
+                $hookName = 'login_footer';
+            } else {
+                $hookName = 'wp_footer';
+            }
             add_action($hookName, function () use ($numberName, $randURI_rand) {
                 echo "\n" . '<script>';
                 echo "\n" . 'if(!clrs_setCookie || typeof(clrs_setCookie) !== "function"){';
@@ -427,7 +433,9 @@ add_filter( 'wp_calculate_image_srcset', 'clrs_disable_srcset' );
 /**
  * 禁止WordPress缩略图
  */
-add_filter( 'add_image_size', create_function( '', 'return 1;' ) );
+add_filter('add_image_size', function () {
+    return 1;
+});
 
 /**
  * 移除顶部工具栏
@@ -482,12 +490,8 @@ function clrs_author_link_request( $query_vars ) {
     return $query_vars;
 }
 
-add_filter(
-    'init', 
-    create_function(
-     '$a', 
-     'global $wp_rewrite; 
-     $wp_rewrite->author_base = "staff"; 
-     $wp_rewrite->flush_rules();' 
-    ) 
-);
+add_action('init', function () {
+    global $wp_rewrite;
+    $wp_rewrite->author_base = 'staff';
+    $wp_rewrite->flush_rules();
+});
