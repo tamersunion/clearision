@@ -17,9 +17,7 @@ function clrs_dashboard()
 {
     wp_enqueue_media();
     wp_enqueue_style('wp-color-picker');
-    //wp_enqueue_script('wp-color-picker');
-    //wp_enqueue_script('clrs-colorpicker', get_template_directory_uri() . '/assets/scripts/wp-color-picker-alpha.min.js', array('wp-color-picker', 'media'), false, true);
-    wp_enqueue_script('clrs-dashboard', get_template_directory_uri() . '/assets/scripts/dashboard.admin.js', array('wp-color-picker', 'media'), false, true);
+    wp_enqueue_script('clrs-dashboard', clrs_asset_url('dashboard.admin.js'), array('wp-color-picker', 'media'), null, true);
     ?>
     <style type="text/css">
 

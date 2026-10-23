@@ -26,3 +26,21 @@
 * 若有任何问题或希望什么新特性请在此页面回复，会尽力帮忙
 * 推荐使用 WordPress 子主题进行修改，这样还可以继续享受更新，详细可搜索相关教程
 * 未内置 SEO 等与主题无关功能，请善用插件，谢谢。没有预留广告位 …… 谢谢。
+
+### 静态资源发布
+
+根目录 `style.css` 仅保留 WordPress 主题信息，不包含实际样式，也不作为前台样式加载。
+主题自带的 CSS、JS 位于 `assets/2.7.4/`，加载路径由 `func/static.php` 的
+`CLRS_ASSET_VERSION` 统一控制，例如：
+
+```text
+/wp-content/themes/clearision/assets/2.7.4/style.css
+/wp-content/themes/clearision/assets/2.7.4/script.js
+```
+
+这些 URL 不依赖 `?ver=` 参数，可由现有 CDN 插件正常改写。发布时先将完整版本目录
+同步到 CDN 源站并确认文件可访问，再更新主题 PHP 文件、根目录 `style.css`，清理页面缓存。
+登录页和简讯的样式仍以内联方式输出，后台脚本及 HTML5 兼容脚本也从同一版本目录读取。
+
+修改已发布的 CSS/JS 时应创建新的版本目录，同时更新 `CLRS_ASSET_VERSION` 和根目录的
+`Version`，不要覆盖已经发布的版本文件。CDN 上保留旧版本目录，供尚未过期的页面使用。

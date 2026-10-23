@@ -15,7 +15,7 @@
 <link rel="alternate" type="application/rdf+xml" title="RSS 1.0" href="<?php bloginfo('rss_url') ?>" />
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="<?php bloginfo('atom_url') ?>" />
 <!--[if lt IE 9]>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/scripts/html5.js" type="text/javascript"></script>
+<script src="<?php echo esc_url(clrs_asset_url('html5.js')); ?>" type="text/javascript"></script>
 <![endif]-->
 <script>var resourceUIR="<?php echo clrs_getResURL(); ?>";</script>
 <?php

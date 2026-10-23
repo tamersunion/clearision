@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Keep template assets on the site's origin. The separate static mirror may
- * contain an older theme snapshot and ignore version query parameters.
+ * 资源目录版本与本次代码发布绑定，避免主题元数据缓存影响加载路径。
  */
-function clrs_theme_asset_url($src, $handle)
-{
-    if (in_array($handle, ['clearision-style', 'clearision-init'], true)) {
-        return wp_make_link_relative($src);
-    }
+const CLRS_ASSET_VERSION = '2.7.4';
 
-    return $src;
+function clrs_asset_path(string $file): string
+{
+    return '/assets/' . CLRS_ASSET_VERSION . '/' . ltrim($file, '/');
 }
-add_filter('style_loader_src', 'clrs_theme_asset_url', PHP_INT_MAX, 2);
-add_filter('script_loader_src', 'clrs_theme_asset_url', PHP_INT_MAX, 2);
+
+function clrs_asset_url(string $file): string
+{
+    return get_template_directory_uri() . clrs_asset_path($file);
+}
 
 /**
  * 注册前端资源文件
@@ -22,9 +22,8 @@ if (!is_admin()) {
     add_action(
         'wp_enqueue_scripts',
         function () {
-            $theme_version = wp_get_theme(get_template())->get('Version');
-            wp_enqueue_style('clearision-style', get_template_directory_uri() . '/style.css', [], $theme_version);
-            wp_enqueue_script('clearision-init', get_template_directory_uri() . '/assets/scripts/script.js', ['jquery'], $theme_version, true);
+            wp_enqueue_style('clearision-style', clrs_asset_url('style.css'), [], null);
+            wp_enqueue_script('clearision-init', clrs_asset_url('script.js'), ['jquery'], null, true);
         }
     );
 

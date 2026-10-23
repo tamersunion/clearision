@@ -16,7 +16,7 @@ function custom_login()
     echo '@media screen and (min-width: 600px){';
     if (!empty($clrs_opbg_des)) echo "body { background-image: url('" . $clrs_opbg_des . "'); }";
     if (!empty($clrs_opcl_des)) echo "body { background-color: " . $clrs_opcl_des . "; }";
-    include get_template_directory().'/assets/css/login.css';
+    include get_template_directory() . clrs_asset_path('login.css');
     echo '}';
     echo "</style>";
 
